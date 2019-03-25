@@ -22,3 +22,8 @@ class CalculateCharge(unittest.TestCase):
     def test_when_is_time_in_legal_range_is_passed_legal_time_it_returns_true(self):
         self.assertTrue(calc.is_time_in_legal_range(
                              datetime(year=1900, month=1, day=1, hour=17).time()))
+
+    def test_when_is_start_time_before_end_time_passed_end_before_start_it_returns_false(self):
+        self.assertFalse(calc.is_start_time_before_end_time(
+                         datetime(year=1900, month=1, day=1, hour=18).time(),
+                         datetime(year=1900, month=1, day=1, hour=17).time()))
