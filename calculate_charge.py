@@ -12,4 +12,7 @@ def is_time_in_legal_range(time):
         or time >= datetime(year=1900, month=1, day=1, hour=17).time())
 
 def is_start_time_before_end_time(start_time, end_time):
-    return False
+    # if start time is PM and end time is AM, return True
+    if start_time.hour >= 12 and end_time.hour < 12:
+        return True
+    return end_time >= start_time

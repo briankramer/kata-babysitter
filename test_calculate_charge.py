@@ -27,3 +27,13 @@ class CalculateCharge(unittest.TestCase):
         self.assertFalse(calc.is_start_time_before_end_time(
                          datetime(year=1900, month=1, day=1, hour=18).time(),
                          datetime(year=1900, month=1, day=1, hour=17).time()))
+
+    def test_when_is_start_time_before_end_time_passed_start_before_end_it_returns_true(self):
+        self.assertTrue(calc.is_start_time_before_end_time(
+                         datetime(year=1900, month=1, day=1, hour=17).time(),
+                         datetime(year=1900, month=1, day=1, hour=18).time()))
+
+    def test_when_is_start_time_before_end_time_passed_start_pm_end_am_it_returns_true(self):
+        self.assertTrue(calc.is_start_time_before_end_time(
+                         datetime(year=1900, month=1, day=1, hour=17).time(),
+                         datetime(year=1900, month=1, day=1, hour=3).time()))
