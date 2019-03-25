@@ -8,4 +8,5 @@ def convert_string_to_time(time_str):
         return None
 
 def is_time_in_legal_range(time):
-    return False
+    return (time <= datetime(year=1900, month=1, day=1, hour=4).time()
+        or time >= datetime(year=1900, month=1, day=1, hour=17).time())
