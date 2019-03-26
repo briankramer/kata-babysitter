@@ -45,3 +45,6 @@ class CalculateCharge(unittest.TestCase):
 
     def test_when_calc_hours_passed_pm_end_pm_start_am_cutoff_it_returns_hours(self):
         self.assertEqual(calc.calc_hours(get_time(17), get_time(21), get_time(2)), 4)
+
+    def test_when_calc_hours_passed_am_end_am_start_am_cutoff_it_returns_hours(self):
+        self.assertEqual(calc.calc_hours(get_time(1), get_time(4), get_time(3)), 2)
