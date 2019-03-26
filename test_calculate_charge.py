@@ -34,18 +34,14 @@ class CalculateCharge(unittest.TestCase):
     def test_when_is_start_time_before_end_time_passed_start_pm_end_am_it_returns_true(self):
         self.assertTrue(calc.is_start_time_before_end_time(get_time(17), get_time(3)))
 
-    def test_when_calculate_sitting_hours_before_time_passed_time_at_start_it_returns_0(self):
-        self.assertEqual(calc.calculate_sitting_hours_before_time(
-            get_time(17), get_time(3), get_time(17)), 0)
+    def test_when_calc_hours_passed_time_at_start_it_returns_0(self):
+        self.assertEqual(calc.calc_hours(get_time(17), get_time(3), get_time(17)), 0)
 
-    def test_when_calculate_sitting_hours_before_time_passed_pm_time_it_returns_hours(self):
-        self.assertEqual(calc.calculate_sitting_hours_before_time(
-            get_time(17), get_time(23), get_time(22)), 5)
+    def test_when_calc_hours_passed_pm_start_pm_end_am_cutoff_it_returns_hours(self):
+        self.assertEqual(calc.calc_hours(get_time(17), get_time(23), get_time(22)), 5)
 
-    def test_when_calculate_sitting_hours_before_time_passed_start_pm_cutoff_am_time_it_returns_hours(self):
-        self.assertEqual(calc.calculate_sitting_hours_before_time(
-            get_time(17), get_time(3), get_time(2)), 9)
+    def test_when_calc_hours_passed_start_pm_end_pm_cutoff_am_it_returns_hours(self):
+        self.assertEqual(calc.calc_hours(get_time(17), get_time(3), get_time(2)), 9)
 
-    def test_when_calculate_sitting_hours_before_time_passed_pm_end_am_cutoff_it_returns_hours_before_cutoff(self):
-        self.assertEqual(calc.calculate_sitting_hours_before_time(
-            get_time(17), get_time(21), get_time(2)), 4)
+    def test_when_calc_hours_passed_pm_end_pm_start_am_cutoff_it_returns_hours(self):
+        self.assertEqual(calc.calc_hours(get_time(17), get_time(21), get_time(2)), 4)
