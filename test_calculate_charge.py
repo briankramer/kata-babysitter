@@ -67,6 +67,10 @@ class TestCalcHours(unittest.TestCase):
     def test_when_calc_hours_passed_am_start_pm_end_am_cutoff_it_returns_hours(self):
         self.assertIsNone(calc.calc_hours(get_time(2), get_time(18), get_time(1)))
 
+class TestGetFamilyRates(unittest.TestCase):
+    def test_when_get_family_rates_passed_invalid_it_returns_None(self):
+        self.assertIsNone(calc.get_family_rates('D'))
+
 class TestCalcPay(unittest.TestCase):
     def test_when_calc_pay_passed_invalid_time_it_returns_None(self):
         self.assertIsNone(calc.calc_pay('5:00', '5:00PM', 'A'))

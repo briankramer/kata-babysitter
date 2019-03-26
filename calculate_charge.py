@@ -56,6 +56,9 @@ def calc_hours(start_time, end_time, cutoff_time):
         return 24 - start_time.hour + cutoff
     return cutoff - start_time.hour
 
+def get_family_rates(family):
+    return None
+
 def calc_pay(start_time_str, end_time_str, family):
     '''Master function for calculating a night's pay.'''
     start_time = convert_string_to_time(start_time_str)
