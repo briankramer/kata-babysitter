@@ -68,17 +68,19 @@ class TestCalcHours(unittest.TestCase):
         self.assertIsNone(calc.calc_hours(get_time(2), get_time(18), get_time(1)))
 
 class TestGetFamilyRates(unittest.TestCase):
-    def test_when_get_family_rates_passed_invalid_it_returns_None(self):
+    def test_when_get_family_rates_passed_invalid_it_returns_none(self):
         self.assertIsNone(calc.get_family_rates('D'))
+    def test_when_get_family_rates_passed_a_it_returns_not_none(self):
+        self.assertIsNotNone(calc.get_family_rates('A'))
 
 class TestCalcPay(unittest.TestCase):
-    def test_when_calc_pay_passed_invalid_time_it_returns_None(self):
+    def test_when_calc_pay_passed_invalid_time_it_returns_none(self):
         self.assertIsNone(calc.calc_pay('5:00', '5:00PM', 'A'))
 
-    def test_when_calc_pay_passed_end_before_start_it_returns_None(self):
+    def test_when_calc_pay_passed_end_before_start_it_returns_none(self):
         self.assertIsNone(calc.calc_pay('6:00PM', '5:00PM', 'A'))
 
-    def test_when_calc_pay_passed_invalid_time_range_it_returns_None(self):
+    def test_when_calc_pay_passed_invalid_time_range_it_returns_none(self):
         self.assertIsNone(calc.calc_pay('4:00PM', '5:00PM', 'A'))
 
     def test_when_calc_pay_passed_same_start_end_it_returns_0(self):

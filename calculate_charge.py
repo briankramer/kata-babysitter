@@ -57,6 +57,14 @@ def calc_hours(start_time, end_time, cutoff_time):
     return cutoff - start_time.hour
 
 def get_family_rates(family):
+    '''Get the family rates array.'''
+    if family.lower() == 'a':
+        return family_a
+    elif family.lower() == 'b':
+        return family_b
+    elif family.lower() == 'c':
+        return family_c
+    print('Family not found.')
     return None
 
 def calc_pay(start_time_str, end_time_str, family):
