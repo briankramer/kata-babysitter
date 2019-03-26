@@ -21,13 +21,16 @@ def convert_string_to_time(time_str):
     try:
         return datetime.strptime(time_str, '%I:%M%p').time()
     except ValueError:
+        print('Time string is invalid format.')
         return None
 
 def is_time_in_legal_range(time):
+    '''Check if time between 5:00PM and 4:00AM'''
     return (time <= datetime(year=1900, month=1, day=1, hour=4).time()
         or time >= datetime(year=1900, month=1, day=1, hour=17).time())
 
 def is_start_time_before_end_time(start_time, end_time):
+    '''Check if the start time is before the end time.'''
     # if start time is PM and end time is AM, return True
     if start_time.hour >= 12 and end_time.hour < 12:
         return True
@@ -36,10 +39,13 @@ def is_start_time_before_end_time(start_time, end_time):
     return end_time >= start_time
 
 def calc_hours(start_time, end_time, cutoff_time):
+    '''Calculate the hours before a cutoff time, given a start and end time.'''
     # if end PM and cutoff AM, use end as cutoff time
     if not is_time_in_legal_range(start_time) or not is_time_in_legal_range(end_time):
+        print('Time not in valid range.')
         return None
     if not is_start_time_before_end_time(start_time, end_time):
+        print('End time is before start time.')
         return None
     cutoff = cutoff_time.hour
     if cutoff >= 17 and start_time.hour < 17:
@@ -51,7 +57,12 @@ def calc_hours(start_time, end_time, cutoff_time):
     return cutoff - start_time.hour
 
 def calc_pay(start_time_str, end_time_str, family):
+    '''Master function for calculating a night's pay.'''
     start_time = convert_string_to_time(start_time_str)
     end_time = convert_string_to_time(end_time_str)
     if not start_time or not end_time:
         return None
+    hours = calc_hours(start_time, end_time, end_time)
+    if hours is None:
+        return None
+    return 0

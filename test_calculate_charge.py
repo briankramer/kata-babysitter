@@ -70,3 +70,12 @@ class TestCalcHours(unittest.TestCase):
 class TestCalcPay(unittest.TestCase):
     def test_when_calc_pay_passed_invalid_time_it_returns_None(self):
         self.assertIsNone(calc.calc_pay('5:00', '5:00PM', 'A'))
+
+    def test_when_calc_pay_passed_end_before_start_it_returns_None(self):
+        self.assertIsNone(calc.calc_pay('6:00PM', '5:00PM', 'A'))
+
+    def test_when_calc_pay_passed_invalid_time_range_it_returns_None(self):
+        self.assertIsNone(calc.calc_pay('4:00PM', '5:00PM', 'A'))
+
+    def test_when_calc_pay_passed_same_start_end_it_returns_0(self):
+        self.assertEqual(calc.calc_pay('5:00PM', '5:00PM', 'A'), 0)
