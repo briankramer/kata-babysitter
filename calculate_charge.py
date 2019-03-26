@@ -37,6 +37,8 @@ def calc_hours(start_time, end_time, cutoff_time):
     # this fn assumes is_time_in_legal_range has already been run
     # if end PM and cutoff AM, use end as cutoff time
     cutoff = cutoff_time.hour
+    if cutoff >= 17 and start_time.hour < 17:
+        return 0
     if cutoff < 17 and end_time.hour >= 17:
         cutoff = end_time.hour
     if cutoff < start_time.hour: # start PM and cutoff AM
