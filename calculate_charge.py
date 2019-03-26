@@ -49,3 +49,9 @@ def calc_hours(start_time, end_time, cutoff_time):
     if cutoff < start_time.hour: # start PM and cutoff AM
         return 24 - start_time.hour + cutoff
     return cutoff - start_time.hour
+
+def calc_pay(start_time_str, end_time_str, family):
+    start_time = convert_string_to_time(start_time_str)
+    end_time = convert_string_to_time(end_time_str)
+    if not start_time or not end_time:
+        return None
