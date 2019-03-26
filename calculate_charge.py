@@ -34,4 +34,6 @@ def is_start_time_before_end_time(start_time, end_time):
     return end_time >= start_time
 
 def calculate_sitting_hours_before_time(start_time, end_time, cutoff_time):
+    if cutoff_time.hour < start_time.hour: # start PM and cutoff AM
+        return 24 - start_time.hour + cutoff_time.hour
     return cutoff_time.hour - start_time.hour
