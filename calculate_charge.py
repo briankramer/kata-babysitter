@@ -1,19 +1,23 @@
 from datetime import datetime
 
+def get_time(hour):
+    '''Convenience function to make tests cleaner.'''
+    return datetime(year=1900, month=1, day=1, hour=hour).time()
+
 family_a = [
-    ('5:00PM', 15),
-    ('11:00PM', 20)
+    (get_time(23), 15),
+    (get_time(4), 20)
 ]
 
 family_b = [
-    ('5:00PM', 12),
-    ('10:00PM', 8),
-    ('12:00AM', 16),
+    (get_time(22), 12),
+    (get_time(0), 8),
+    (get_time(4), 16),
 ]
 
 family_c = [
-    ('5:00PM', 21),
-    ('9:00PM', 15),
+    (get_time(21), 21),
+    (get_time(4), 15),
 ]
 
 def convert_string_to_time(time_str):
@@ -21,7 +25,7 @@ def convert_string_to_time(time_str):
     try:
         return datetime.strptime(time_str, '%I:%M%p').time()
     except ValueError:
-        print('Time string is invalid format.')
+        print('Time string has an invalid format.')
         return None
 
 def is_time_in_legal_range(time):
@@ -42,15 +46,15 @@ def calc_hours(start_time, end_time, cutoff_time):
     '''Calculate the hours before a cutoff time, given a start and end time.'''
     # if end PM and cutoff AM, use end as cutoff time
     if not is_time_in_legal_range(start_time) or not is_time_in_legal_range(end_time):
-        print('Time not in valid range.')
-        return None
+        return 0
     if not is_start_time_before_end_time(start_time, end_time):
-        print('End time is before start time.')
-        return None
+        return 0
     cutoff = cutoff_time.hour
     if cutoff >= 17 and start_time.hour < 17:
         return 0
     if cutoff < 17 and end_time.hour >= 17:
+        cutoff = end_time.hour
+    elif not (end_time.hour < 17 and cutoff >= 17) and end_time.hour < cutoff:
         cutoff = end_time.hour
     if cutoff < start_time.hour: # start PM and cutoff AM
         return 24 - start_time.hour + cutoff
@@ -76,7 +80,11 @@ def calc_pay(start_time_str, end_time_str, family):
     family_rates = get_family_rates(family)
     if not family_rates:
         return None
-    hours = calc_hours(start_time, end_time, end_time)
-    if hours is None:
-        return None
-    return hours * family_rates[0][1]
+    total = 0
+    for rate in family_rates:
+        hours = calc_hours(start_time, end_time, rate[0])
+        if hours is None:
+            return None
+        total += hours * rate[1]
+        start_time = rate[0]
+    return total
