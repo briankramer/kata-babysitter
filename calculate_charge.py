@@ -73,6 +73,9 @@ def calc_pay(start_time_str, end_time_str, family):
     end_time = convert_string_to_time(end_time_str)
     if not start_time or not end_time:
         return None
+    family_rates = get_family_rates(family)
+    if not family_rates:
+        return None
     hours = calc_hours(start_time, end_time, end_time)
     if hours is None:
         return None

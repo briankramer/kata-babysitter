@@ -92,3 +92,6 @@ class TestCalcPay(unittest.TestCase):
 
     def test_when_calc_pay_passed_same_start_end_it_returns_0(self):
         self.assertEqual(calc.calc_pay('5:00PM', '5:00PM', 'A'), 0)
+
+    def test_when_calc_pay_passed_invalid_family_it_returns_none(self):
+        self.assertIsNone(calc.calc_pay('4:00PM', '5:00PM', 'D'))
