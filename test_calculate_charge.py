@@ -70,8 +70,15 @@ class TestCalcHours(unittest.TestCase):
 class TestGetFamilyRates(unittest.TestCase):
     def test_when_get_family_rates_passed_invalid_it_returns_none(self):
         self.assertIsNone(calc.get_family_rates('D'))
+
     def test_when_get_family_rates_passed_a_it_returns_not_none(self):
         self.assertIsNotNone(calc.get_family_rates('A'))
+
+    def test_when_get_family_rates_passed_b_it_returns_not_none(self):
+        self.assertIsNotNone(calc.get_family_rates('b'))
+
+    def test_when_get_family_rates_passed_c_it_returns_not_none(self):
+        self.assertIsNotNone(calc.get_family_rates('C'))
 
 class TestCalcPay(unittest.TestCase):
     def test_when_calc_pay_passed_invalid_time_it_returns_none(self):
