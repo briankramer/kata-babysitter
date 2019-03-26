@@ -34,6 +34,10 @@ class CalculateCharge(unittest.TestCase):
     def test_when_is_start_time_before_end_time_passed_start_pm_end_am_it_returns_true(self):
         self.assertTrue(calc.is_start_time_before_end_time(get_time(17), get_time(3)))
 
-    def test_when_calculate_sitting_hours_before_time_given_time_at_start_it_returns_0(self):
+    def test_when_calculate_sitting_hours_before_time_passed_time_at_start_it_returns_0(self):
         self.assertEqual(calc.calculate_sitting_hours_before_time(
             get_time(17), get_time(3), get_time(17)), 0)
+
+    def test_when_calculate_sitting_hours_before_time_passed_pm_time_it_returns_hours(self):
+        self.assertEqual(calc.calculate_sitting_hours_before_time(
+            get_time(17), get_time(23), get_time(22)), 5)
