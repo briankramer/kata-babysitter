@@ -60,3 +60,6 @@ class CalculateCharge(unittest.TestCase):
 
     def test_when_calc_hours_passed_am_start_pm_end_pm_cutoff_it_returns_hours(self):
         self.assertIsNone(calc.calc_hours(get_time(2), get_time(18), get_time(19)))
+
+    def test_when_calc_hours_passed_am_start_pm_end_am_cutoff_it_returns_hours(self):
+        self.assertIsNone(calc.calc_hours(get_time(2), get_time(18), get_time(1)))
