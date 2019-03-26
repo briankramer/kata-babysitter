@@ -34,6 +34,9 @@ class CalculateCharge(unittest.TestCase):
     def test_when_is_start_time_before_end_time_passed_start_pm_end_am_it_returns_true(self):
         self.assertTrue(calc.is_start_time_before_end_time(get_time(17), get_time(3)))
 
+    def test_when_is_start_time_before_end_time_passed_start_am_end_pm_it_returns_false(self):
+        self.assertFalse(calc.is_start_time_before_end_time(get_time(3), get_time(18)))
+
     def test_when_calc_hours_passed_time_at_start_it_returns_0(self):
         self.assertEqual(calc.calc_hours(get_time(17), get_time(3), get_time(17)), 0)
 
@@ -54,3 +57,6 @@ class CalculateCharge(unittest.TestCase):
 
     def test_when_calc_hours_passed_am_start_am_end_pm_cutoff_it_returns_hours(self):
         self.assertEqual(calc.calc_hours(get_time(2), get_time(4), get_time(19)), 0)
+
+    def test_when_calc_hours_passed_am_start_pm_end_pm_cutoff_it_returns_hours(self):
+        self.assertIsNone(calc.calc_hours(get_time(2), get_time(18), get_time(19)))

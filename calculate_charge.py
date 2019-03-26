@@ -31,11 +31,16 @@ def is_start_time_before_end_time(start_time, end_time):
     # if start time is PM and end time is AM, return True
     if start_time.hour >= 12 and end_time.hour < 12:
         return True
+    elif start_time.hour < 12 and end_time.hour >= 12:
+        return False
     return end_time >= start_time
 
 def calc_hours(start_time, end_time, cutoff_time):
-    # this fn assumes is_time_in_legal_range has already been run
     # if end PM and cutoff AM, use end as cutoff time
+    if not is_time_in_legal_range(start_time) or not is_time_in_legal_range(end_time):
+        return None
+    if not is_start_time_before_end_time(start_time, end_time):
+        return None
     cutoff = cutoff_time.hour
     if cutoff >= 17 and start_time.hour < 17:
         return 0
