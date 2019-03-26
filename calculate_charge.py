@@ -79,4 +79,4 @@ def calc_pay(start_time_str, end_time_str, family):
     hours = calc_hours(start_time, end_time, end_time)
     if hours is None:
         return None
-    return 0
+    return hours * family_rates[0][1]
