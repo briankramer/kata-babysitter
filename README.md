@@ -1,24 +1,23 @@
 # kata-babysitter
 
-##Requirements: https://github.com/PillarTechnology/kata-babysitter
+## Requirements: https://github.com/PillarTechnology/kata-babysitter
 
 This project uses Python 3 with no extra libraries.
 
-
-#Run tests:
-
+# Run tests:
   python3 -m unittest discover
 
+# Run calc_pay function:
+  Go into python shell
+  > python3
 
-#Run calc_pay function:
-
-  Go into python shell > python3
-
-  Type > from calculate_charge import calc_pay
+  Type
+  > from calculate_charge import calc_pay
 
   Use calc_pay to calculate the babysitter's pay
 
-  Example: > calc_pay('5:00PM', '3:00AM', 'c')
+  Example:
+  > calc_pay('5:00PM', '3:00AM', 'c')
 
   Time must be in HH:MMPM format since that is what the requirements had written.
 
