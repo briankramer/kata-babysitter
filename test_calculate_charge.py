@@ -45,6 +45,9 @@ class TestCalcHours(unittest.TestCase):
     def test_when_calc_hours_passed_end_one_hour_after_start_it_returns_1(self):
         self.assertEqual(calc.calc_hours(calc.get_time(17), calc.get_time(18), calc.get_time(23)), 1)
 
+    def test_when_calc_hours_passed_4_to_4_it_returns_0(self):
+        self.assertEqual(calc.calc_hours(calc.get_time(4), calc.get_time(4), calc.get_time(4)), 0)
+
     def test_when_calc_hours_passed_pm_start_pm_end_pm_cutoff_it_returns_hours(self):
         self.assertEqual(calc.calc_hours(calc.get_time(17), calc.get_time(23), calc.get_time(22)), 5)
 
@@ -103,3 +106,18 @@ class TestCalcPay(unittest.TestCase):
 
     def test_when_calc_pay_passed_11_to_12_fam_a_it_returns_20(self):
         self.assertEqual(calc.calc_pay('11:00PM', '12:00AM', 'A'), 20)
+
+    def test_when_calc_pay_passed_11_to_11_fam_a_it_returns_0(self):
+        self.assertEqual(calc.calc_pay('11:00PM', '11:00PM', 'A'), 0)
+
+    def test_when_calc_pay_passed_10_to_12_fam_a_it_returns_35(self):
+        self.assertEqual(calc.calc_pay('10:00PM', '12:00AM', 'A'), 35)
+
+    def test_when_calc_pay_passed_10_to_1_fam_a_it_returns_35(self):
+        self.assertEqual(calc.calc_pay('10:00PM', '1:00AM', 'A'), 55)
+
+    def test_when_calc_pay_passed_5_to_4_fam_a_it_returns_190(self):
+        self.assertEqual(calc.calc_pay('5:00PM', '4:00AM', 'A'), 190)
+
+    def test_when_calc_pay_passed_4_to_4_fam_a_it_returns_0(self):
+        self.assertEqual(calc.calc_pay('4:00AM', '4:00AM', 'a'), 0)
