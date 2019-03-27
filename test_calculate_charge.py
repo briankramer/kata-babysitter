@@ -121,3 +121,24 @@ class TestCalcPay(unittest.TestCase):
 
     def test_when_calc_pay_passed_4_to_4_fam_a_it_returns_0(self):
         self.assertEqual(calc.calc_pay('4:00AM', '4:00AM', 'a'), 0)
+
+    def test_when_calc_pay_passed_6_to_11_fam_b_it_returns_56(self):
+        self.assertEqual(calc.calc_pay('6:00PM', '11:00PM', 'b'), 56)
+
+    def test_when_calc_pay_passed_8_to_1_fam_b_it_returns_56(self):
+        self.assertEqual(calc.calc_pay('8:00PM', '1:00AM', 'b'), 56)
+
+    def test_when_calc_pay_passed_8_to_3_fam_a_it_returns_88(self):
+        self.assertEqual(calc.calc_pay('8:00PM', '3:00AM', 'b'), 88)
+
+    def test_when_calc_pay_passed_4_to_4_fam_c_it_returns_0(self):
+        self.assertEqual(calc.calc_pay('5:00PM', '5:00PM', 'c'), 0)
+
+    def test_when_calc_pay_passed_9_to_4_fam_c_it_returns_105(self):
+        self.assertEqual(calc.calc_pay('9:00PM', '4:00AM', 'c'), 105)
+
+    def test_when_calc_pay_passed_8_to_9_fam_c_it_returns_21(self):
+        self.assertEqual(calc.calc_pay('8:00PM', '9:00PM', 'c'), 21)
+
+    def test_when_calc_pay_passed_6_to_12_fam_c_it_returns_108(self):
+        self.assertEqual(calc.calc_pay('6:00PM', '12:00AM', 'C'), 108)
