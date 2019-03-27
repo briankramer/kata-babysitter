@@ -1,6 +1,6 @@
 # kata-babysitter
 
-## Requirements: https://github.com/PillarTechnology/kata-babysitter
+Kata Requirements: https://github.com/PillarTechnology/kata-babysitter
 
 This project uses Python 3 with no extra libraries.
 
@@ -19,11 +19,10 @@ This project uses Python 3 with no extra libraries.
   Example:
   > calc_pay('5:00PM', '3:00AM', 'c')
 
-  Time must be in HH:MMPM format since that is what the requirements had written.
+  Time must be in HH:MMPM format since that was given by requirements.
 
   Any minutes will be rounded down since requirements stated that babysitter gets paid for full hours.
 
-  The third parameter is the family which is a, b, c. Can be upper or lower case.
-
+  The third parameter is the family. Options are a, b, c. Can be upper or lower case.
 
   Enjoy!
