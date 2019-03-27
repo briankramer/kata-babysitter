@@ -4,9 +4,11 @@ Requirements: https://github.com/PillarTechnology/kata-babysitter
 
 This project uses Python 3 with no extra libraries.
 
+
 Run tests:
 
   python3 -m unittest discover
+
 
 Run calc_pay function:
 
